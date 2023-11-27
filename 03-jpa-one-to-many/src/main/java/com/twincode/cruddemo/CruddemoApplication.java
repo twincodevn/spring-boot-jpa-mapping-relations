@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -24,8 +26,74 @@ public class CruddemoApplication {
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
 //			deleteInstructorDetail(appDAO);
-			createInstructorWithCourses(appDAO);
+//			createInstructorWithCourses(appDAO);
+//			findInstructorWithCourses(appDAO);
+//			findCoursesForInstructor(appDAO);
+//			findInstructorWithCourseJoinFetch(appDAO);
+//			updateCourse(appDAO);
+//			deleteInstructorWithCourses(appDAO);
+//			deleteCourse(appDAO);
 		};
+	}
+
+	private void deleteCourse(AppDAO appDAO) {
+		int theId = 10;
+		appDAO.deleteCourse(theId);
+		System.out.println("Deleting success!");
+	}
+
+	private void deleteInstructorWithCourses(AppDAO appDAO) {
+		int theId = 1;
+		appDAO.deleteInstructor(theId);
+		System.out.println("Deleting success!");
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int theId = 10;
+		Course course =appDAO.findCourseById(theId);
+		course.setTitle("twincode course");
+		appDAO.update(course);
+	}
+
+	private void findInstructorWithCourseJoinFetch(AppDAO appDAO) {
+		int theId = 1;
+		// find the instructor
+		Instructor temp = appDAO.findInstructorByIdJoinFetch(theId);
+
+		System.out.println(temp.getCourses());
+
+
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int theId = 1;
+
+		System.out.println("Finding ínstructor id : " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor " + tempInstructor);
+
+		// find courses list
+
+		List<Course> courseList = appDAO.findCoursesByInstructorId(theId);
+
+		System.out.println(courseList);
+
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		int theId = 1;
+
+		System.out.println("Finding ínstructor id : " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor " + tempInstructor);
+
+		System.out.println("associated courese: " + tempInstructor.getCourses().get(0));
+
+		System.out.println("Done!");
 	}
 
 	private void createInstructorWithCourses(AppDAO appDAO) {
