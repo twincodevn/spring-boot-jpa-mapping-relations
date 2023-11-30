@@ -3,6 +3,7 @@ package com.twincode.cruddemo.dao;
 import com.twincode.cruddemo.entity.Course;
 import com.twincode.cruddemo.entity.Instructor;
 import com.twincode.cruddemo.entity.InstructorDetail;
+import com.twincode.cruddemo.entity.Student;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -129,7 +130,12 @@ public class AppDAOImpl implements AppDAO{
         return query.getSingleResult();
     }
 
-
+    @Override
+    public Student findStudentAndCoursesById(int id) {
+        TypedQuery<Student> query = entityManager.createQuery("select s from Student s join fetch s.courses where s.id=:data",Student.class);
+        query.setParameter("data",id);
+        return query.getSingleResult();
+    }
 
 
 }

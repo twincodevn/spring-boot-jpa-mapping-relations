@@ -3,6 +3,7 @@ package com.twincode.cruddemo.dao;
 import com.twincode.cruddemo.entity.Course;
 import com.twincode.cruddemo.entity.Instructor;
 import com.twincode.cruddemo.entity.InstructorDetail;
+import com.twincode.cruddemo.entity.Student;
 
 import java.util.List;
 
@@ -35,6 +36,8 @@ public interface AppDAO {
     Course findCourseAndReviewsById(int id);
 
     Course findCourseAndStudentsById(int id);
+
+    Student findStudentAndCoursesById(int id);
 
 
 
