@@ -1,10 +1,7 @@
 package com.twincode.cruddemo;
 
 import com.twincode.cruddemo.dao.AppDAO;
-import com.twincode.cruddemo.entity.Course;
-import com.twincode.cruddemo.entity.Instructor;
-import com.twincode.cruddemo.entity.InstructorDetail;
-import com.twincode.cruddemo.entity.Review;
+import com.twincode.cruddemo.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,10 +22,22 @@ public class CruddemoApplication {
 //				createCourseAndReviews(appDAO);
 //				retrieveCourseAndReviews(appDAO);
 //				deleteCourse(appDAO);
-
+				createCourseAndStudent(appDAO);
 		};
 	}
 
+	private void createCourseAndStudent(AppDAO appDAO){
+		// create a course
+		Course tempCourse = new Course("MAE101");
+		// create a student
+		Student s1 = new Student("Tuan","Nguyen Dinh","twincodevn@gmail.com");
+		// add course and student
+		tempCourse.addStudent(s1);
+		appDAO.save(tempCourse);
+		// display
+		System.out.println("Save successfully !");
+
+	}
 	private void retrieveCourseAndReviews(AppDAO appDAO) {
 		int theId = 10;
 		Course course = appDAO.findCourseAndReviewsById(theId);
