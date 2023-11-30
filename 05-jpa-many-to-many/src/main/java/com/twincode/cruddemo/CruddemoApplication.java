@@ -25,7 +25,35 @@ public class CruddemoApplication {
 //				createCourseAndStudent(appDAO);
 //				retrieveCourseAndStudents(appDAO);
 //				findStudentAndCourses(appDAO);
+//				updateStudent(appDAO)
+//				addMoreCoursesForStudent(appDAO);
+
 		};
+	}
+
+	private void addMoreCoursesForStudent(AppDAO appDAO) {
+		int theID = 2;
+		Student s = appDAO.findStudentAndCoursesById(theID);
+
+		// create more courses
+		Course c1 = new Course("MAD101");
+		Course c2 = new Course("PRF192");
+
+		// add course to student
+		s.addCourse(c1);
+		s.addCourse(c2);
+
+		appDAO.updateStudent(s);
+
+		// display status
+		System.out.println("Add successfully");
+	}
+
+	private void updateStudent(AppDAO appDAO) {
+		Student tempStudent = new Student("Twincode","vn","twincodevn@gmail.com");
+		tempStudent.setId(1);
+		appDAO.updateStudent(tempStudent);
+		System.out.println("Updating successfully");
 	}
 
 	private void findStudentAndCourses(AppDAO appDAO) {
@@ -45,7 +73,7 @@ public class CruddemoApplication {
 
 	private void createCourseAndStudent(AppDAO appDAO){
 		// create a course
-		Course tempCourse = new Course("MAE101");
+		Course tempCourse = new Course("MAD101v2");
 		// create a student
 		Student s1 = new Student("Tuan","Nguyen Dinh","twincodevn@gmail.com");
 		// add course and student
