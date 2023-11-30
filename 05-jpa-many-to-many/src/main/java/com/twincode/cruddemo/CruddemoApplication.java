@@ -24,7 +24,7 @@ public class CruddemoApplication {
 		return runner -> {
 //				createCourseAndReviews(appDAO);
 //				retrieveCourseAndReviews(appDAO);
-				deleteCourse(appDAO);
+//				deleteCourse(appDAO);
 
 		};
 	}
